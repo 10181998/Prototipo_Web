@@ -1,0 +1,60 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+{% block body %}
+
+<div id="content-wrapper" style="padding-top: 20px">
+    <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="">Editar Curso</a>
+                </li>
+
+            </ol>
+    </div>
+    
+
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 mb-8">
+          <div id="content-wrapper" style="padding-top: 10px">
+        <!-- Creación de cursos  -->   
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table text-primary"></i>
+                    <a  class="nav-link" href="{% url 'lista_cursos' %}" style="padding: 8px; float: right; color: blue;" >Volver</a>
+        <h2> Editar Curso</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/edicionCurso_instructor/" method="post">
+                    {% csrf_token %} <!-- da la seguridad -->
+                    <div class="form-group">
+                        <label for="txtCodigo">Código:</label>
+                        <input type="text" id="txtCodigo" name="txtCodigo" value = "{{course.codigo}}"lass="form-control" placeholder="Código"
+                            maxlength="7" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" value = "{{course.name}}" class="form-control" placeholder="Nombre"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtDescripcion">Descripción:</label>
+                        <input type="text" id="txtDescripcion" name="txtDescripcion"  value = "{{course.descripcion}}" class="form-control"  placeholder="descripción"
+                            required>
+                    </div>
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-sm float-end ">Guardar</button>
+                    
+                    </div>
+                    
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock body %}

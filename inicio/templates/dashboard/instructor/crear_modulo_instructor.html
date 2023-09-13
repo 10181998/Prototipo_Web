@@ -1,0 +1,41 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mb-8">
+    <div id="content-wrapper" style="padding-top: 10px">
+  <!-- Creación de cursos  -->   
+      <div class="card mb-3">
+          <div class="card-header">
+              <i class="fas fa-table text-primary"></i>
+              Crear un nuevo módulo
+          </div>
+          <div class="card-body">
+              {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear</button>
+  </form>
+  <a href="{% url 'detalle_curso_instructor' codigo=course.codigo %}">Volver al detalle del curso</a>
+
+        
+         </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+  {% endblock body %}

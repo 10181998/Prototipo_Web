@@ -1,0 +1,11 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+
+<h2>Editar Recurso</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ resource_form.as_p }}
+    <button type="submit">Guardar cambios</button>
+  </form>
+
+  {% endblock body %}

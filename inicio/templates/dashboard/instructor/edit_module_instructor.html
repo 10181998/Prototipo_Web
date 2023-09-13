@@ -1,0 +1,38 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+
+
+  <div id="content-wrapper" style="padding-top: 20px">
+    <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="">Modulos</a>
+                </li>
+              
+            </ol>
+          
+    </div>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 mb-8">
+        <div id="content-wrapper" style="padding-top: 10px">
+    <div class="card mb-3">
+      <div class="card-header">
+          <i class="fas fa-table text-primary"></i>
+    <h2>Editar  - {{ module.title }}</h2>
+    <div class="card-body">
+      {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Guardar Cambios</button>
+    </form>
+    <a href="{% url 'detalle_curso_instructor' module.course.codigo %}"> Volver al curso</a>
+
+  {% endblock body %}

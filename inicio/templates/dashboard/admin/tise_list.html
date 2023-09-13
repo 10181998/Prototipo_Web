@@ -1,0 +1,62 @@
+{% extends 'dashboard/admin/base.html' %}
+
+
+{% block body %}
+
+  <div class="container-fluid">
+        <div class="row">
+          <div class="col-11 mb-3">
+          <div class="col-11 mb-3">
+           
+
+                <div id="content-wrapper" style="padding-top: 30px">
+        <div class="container-fluid">
+            <div class="card mb-3">
+            
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+    <center><a href="/alpost"><button class="btn btn btn-info"><i class="fa fa-refresh" aria-hidden="true"></i>
+    Leer anuncios </button></a><br><br><br></center>
+
+     {% for tise in object_list %}
+        <div class="chat" style="width: 150%; background: white; box-shadow: 4px 4px 4px 4px #d2d2d2;">
+            <p><b class="chat-content">{{ tise|linebreaks }}</b></p>
+            <small class="chat-date">Publicado {{ tise.posted_at }} por {{ tise.user }}</small>
+        </div><br><br><br>
+     {% empty %}
+    <h1 class="heading">¡Aún no hay chats. Sé el primero en enviar un mensaje!</h1><br>
+    {% endfor %}
+
+   
+    <!--
+    <br><a href=""><button class="btn btn-outline-primary">New Message</button></a>
+    -->
+    <div class="col-sm-4"></div>
+    </div>
+
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+
+
+
+<div class="col-sm-2" style="color: red">
+</div>
+
+</div>
+</div>
+
+
+{% endblock body %}
+
+
+
+
+

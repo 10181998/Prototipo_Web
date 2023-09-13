@@ -1,0 +1,14 @@
+<h2>Contenido de la Actividad</h2>
+<ul>
+    {% for content in activity.contents.all %}
+        <li>
+            {{ content.tu_campo_de_contenido }}
+            <form method="post" action="{% url 'remove_content_from_activity' activity_id=activity.id content_id=content.id %}">
+                {% csrf_token %}
+                <button type="submit">Eliminar</button>
+            </form>
+        </li>
+    {% empty %}
+        <li>No hay contenido asociado a esta actividad.</li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,14 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block body %}
+
+<h1>Organizar temas</h1>
+<form method="POST" action="{% url 'organizar_temas' tema.id %}">
+  {% csrf_token %}
+  <ul>
+    {% for subtema_id in tema.orden %}
+      <li>{{ subtema_id }}</li>
+    {% endfor %}
+  </ul>
+  <button type="submit">Guardar orden</button>
+</form>
+{% endblock body %}

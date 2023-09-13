@@ -1,0 +1,54 @@
+{% extends 'dashboard/admin/base.html' %}
+
+
+
+{% block body %}
+
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-sm-8" style="padding-top: 70px;">
+    <div class="card">
+</div>
+
+
+<div class="card mb-6">
+<div class="card-body">
+
+<div class="row" style="background-color: #D5DBDB">
+	 <div class="card col-sm-12">
+  <div class="card-header text-primary">
+     <center>Crear nuevo anuncio</center>
+  </div>
+</div>
+
+    <div class="col-sm-6">
+    	<div class="myform">
+    	    <form method="POST">
+    	{% csrf_token %}
+    	{{ form.as_p }}
+
+    	<br><input type="submit" value="Post" class="btn btn-primary">
+    </form>
+</div>
+
+    <div class="col-sm-4"></div>
+    </div>
+
+
+                      </div>
+                    </div>  
+                  </div>
+
+</div>
+
+
+
+<div class="col-sm-2" style="color: red">
+</div>
+
+</div>
+</div>
+
+
+{% endblock body %}

@@ -1,0 +1,67 @@
+{% extends 'dashboard/admin/base.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% block body %}
+
+<div id="content-wrapper" style="padding-top: 20px">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <div class="ml-auto">
+        <a href="">Detalle Módulo</a>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-3">
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <div class="card mb-3">
+            <div class="card-header">
+              
+              <h3>{{ module.title }}</h3>
+              <a class="nav-link" href="{% url 'edit_module' module.id %}" style="padding: 8px; float: right;color: blue;"><i class="fas fa-edit"></i></a>
+              <a class="nav-link"  href="{% url 'delete_module' module_id=module.id %}" style="padding: 8px; float: right;color:red;"><i class="fas fa-trash"></i></a>
+              
+              <p class="justified-text">{{ module.description }}</p>
+
+              <!-- Lecciones -->
+              <a class="nav-link" href="{% url 'create_lesson' module_id=module.id %}" style="padding: 8px; float: right;color: green;"><i class="fas fa-plus"></i>Agregar</a>
+
+                <!-- Lista de lecciones -->
+                <ul>
+                  {% for lesson in lessons %}
+                      <li>
+                          <a href="{% url 'edit_lesson' module_id=module.id lesson_id=lesson.id %}">
+                              {{ lesson.title }}
+                              <p>{{ lesson.content }}</p>
+                          </a>
+                      </li>
+                  {% endfor %}
+              </ul>
+
+                
+              <a href="{% url 'create_lesson' module_id=module.id %}" class="btn btn-primary">
+                  <i class="fas fa-plus"></i> Agregar lección
+              </a>
+              
+
+
+       
+              <!-- ... (lista de lecciones) ... -->
+
+              <!-- Actividades -->
+              <!-- ... (lista de actividades) ... -->
+
+              <!-- Quices -->
+              <!-- ... (lista de quices) ... -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

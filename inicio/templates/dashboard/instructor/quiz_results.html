@@ -1,0 +1,62 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+{% load crispy_forms_tags humanize %}
+
+
+
+{% block body %}
+<div class="container-fluid" style="padding-top: 20px">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#" style="color: #999965; font-weight: bold; letter-spacing: 10px">Sistema de gestión de aprendizaje</a>
+                </li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-body">
+   <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'quiz_change_list' %}">Mis Quizzes</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'quiz_change' quiz.pk %}">{{ quiz.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Resultados</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">{{ quiz.name }} Resultados</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <strong>Quizzes realizados</strong>
+      <span class="badge badge-pill badge-primary float-right">Nota promedio: {{ quiz_score.average_score|default_if_none:0.0 }}</span>
+    </div>
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Estudiante</th>
+          <th>Fecha</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for taken_quiz in taken_quizzes %}
+          <tr>
+            <td>{{ taken_quiz.student.user.username }}</td>
+            <td>{{ taken_quiz.date|naturaltime }}</td>
+            <td>{{ taken_quiz.score }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="card-footer text-muted">
+      Total participantes: <strong>{{ total_taken_quizzes }}</strong>
+    </div>
+  </div>
+
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+

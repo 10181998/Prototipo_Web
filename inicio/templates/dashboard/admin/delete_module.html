@@ -1,0 +1,23 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block body %}
+
+<div id="content-wrapper" style="padding-top: 20px">
+    <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="">Detalle Curso</a>
+                </li>
+               
+            </ol>
+          
+    </div>
+
+
+<h2>Delete Module - {{ module.title }}</h2>
+<p>Are you sure you want to delete this module?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+</form>
+<a href="{% url 'detalle_curso' module.course.codigo %}">Cancel</a>
+{% endblock body %}

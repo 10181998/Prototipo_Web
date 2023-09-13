@@ -1,0 +1,12 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+
+<h2>Confirmar Eliminación</h2>
+<p>¿Estás seguro de que deseas eliminar esta actividad?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Eliminar</button>
+</form>
+<a href="{% url 'list_activities' %}">Cancelar</a>
+
+{% endblock body %}

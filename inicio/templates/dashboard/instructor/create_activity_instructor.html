@@ -1,0 +1,171 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+
+{% load static %}
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-12 mb-8">
+          <div id="content-wrapper" style="padding-top: 10px">
+              <div class="card mb-3">
+                  <div class="card-header">
+                      <i class="fas fa-table text-primary"></i>
+                      Crear una nueva Actividad
+                  </div>
+                  <div class="card-body">
+
+                        
+                          
+           
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <label for="id_activity_type">Tipo de Actividad:</label>
+    <select id="id_activity_type" name="activity_type">
+        <option value="clase">Actividad de Clase</option>
+        <option value="realidad_virtual">Actividad de Realidad Virtual</option>
+    </select>
+    
+    {{ activity_form.title.label_tag }} {{ activity_form.title }}
+    {{ activity_form.description.label_tag }} {{ activity_form.description }}
+    
+    <div id="clase-fields" style="display: none;">
+        {{ class_form.content_type.label_tag }} {{ class_form.content_type }}
+        {{ class_form.content.label_tag }} {{ class_form.content }}
+    </div>
+    
+    <div id="realidad_virtual-fields" style="display: none;">
+        {{ vr_form.vr_game_title.label_tag }} {{ vr_form.vr_game_title }}
+        {{ vr_form.vr_game_link.label_tag }} {{ vr_form.vr_game_link }}
+    </div>
+    
+    <button type="submit">Guardar</button>
+</form>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetas Seleccionables</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    
+</head>
+<body>
+    <h1>Selecciona una tarjeta:</h1>
+    <div class="tarjetas">
+        <div class="tarjeta" data-tarjeta="Tarjeta 1">Tarjeta 1</div>
+        <div class="tarjeta" data-tarjeta="Tarjeta 2">Tarjeta 2</div>
+        <div class="tarjeta" data-tarjeta="Tarjeta 3">Tarjeta 3</div>
+    </div>
+    <div class="seleccion">Tarjeta seleccionada: <span id="tarjetaSeleccionada">Ninguna</span></div>
+    <script src="script.js"></script>
+
+    <script>
+        const tarjetas = document.querySelectorAll(".tarjeta");
+        const tarjetaSeleccionada = document.getElementById("tarjetaSeleccionada");
+
+        tarjetas.forEach((tarjeta) => {
+            tarjeta.addEventListener("click", () => {
+                tarjetas.forEach((t) => {
+                    t.style.backgroundColor = "#fff";
+                });
+
+                tarjeta.style.backgroundColor = "#a0c8e0";
+                tarjetaSeleccionada.textContent = tarjeta.getAttribute("data-tarjeta");
+            });
+        });
+    </script>
+</body>
+</html>
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Evento change activado');
+        const activityTypeSelect = document.getElementById('id_activity_type');
+        const claseFields = document.getElementById('clase-fields');
+        const vrFields = document.getElementById('realidad_virtual-fields');
+        
+        // Ocultar campos de forma predeterminada
+        claseFields.style.display = 'none';
+        vrFields.style.display = 'none';
+        
+        activityTypeSelect.addEventListener('change', function() {
+            if (activityTypeSelect.value === 'clase') {
+                claseFields.style.display = 'block';
+                vrFields.style.display = 'none';
+            } else if (activityTypeSelect.value === 'realidad_virtual') {
+                claseFields.style.display = 'none';
+                vrFields.style.display = 'block';
+            } else {
+                claseFields.style.display = 'none';
+                vrFields.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const activityTypeSelect = document.getElementById('id_activity_type');
+        const claseFields = document.getElementById('clase-fields');
+        const vrFields = document.getElementById('realidad_virtual-fields');
+        
+        // Ocultar campos de forma predeterminada
+        claseFields.style.display = 'none';
+        
+        activityTypeSelect.addEventListener('change', function() {
+            if (activityTypeSelect.value === 'clase') {
+                claseFields.style.display = 'block';
+                vrFields.style.display = 'none';
+            } else if (activityTypeSelect.value === 'realidad_virtual') {
+                claseFields.style.display = 'none';
+                vrFields.style.display = 'block';
+            } else {
+                claseFields.style.display = 'none';
+                vrFields.style.display = 'none';
+            }
+        });
+    });
+    </script>-->
