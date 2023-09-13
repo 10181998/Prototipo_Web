@@ -1,0 +1,79 @@
+{% extends 'dashboard/admin/base.html' %}
+
+{% block body %}
+
+<div id="content-wrapper" style="padding-top: 20px">
+    <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="">Gestión de cursos</a>
+                </li>
+                
+            </ol>
+    </div>
+
+  {% if messages %} {% for message in messages %}
+  <div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong class="text-dark">{{ message }}</strong>
+  </div>
+  {% endfor %} {% endif %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mb-8">
+    <div id="content-wrapper" style="padding-top: 10px">
+  <!-- Creación de cursos  -->   
+      <div class="card mb-3">
+          <div class="card-header">
+              <i class="fas fa-table text-primary"></i>
+              Crear un nuevo Curso 
+          </div>
+          <div class="card-body">
+              {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+        <form method="post" action="{% url 'course' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <input type="text" id="codigo" name="txtCodigo" class="form-control" placeholder="Código" maxlength="7"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                  <input
+                    type="text" id="name" name="name" class="form-control" placeholder="Nombre" maxlength="50"
+                    required
+                  />
+            </div>       
+ 
+            <div class="form-group">
+              <div class="row">
+              <div class="col">
+                <input type="text" id="txtDescripcion" name="txtDescripcion" class="form-control" placeholder="descripción"
+                required
+              />    
+            </div>          
+  </div>
+</div>
+    <div class="form-group">
+      <div class="row">
+        <button type="submit" style="background-color:" class="btn btn btn-primary" href="">Guardar</button>
+      </div>          
+    </div>  
+</form>
+                
+         </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock body %}

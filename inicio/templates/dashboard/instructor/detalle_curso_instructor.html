@@ -1,0 +1,61 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% load static %}
+  <style>
+    .justified-text {
+      text-align: justify;
+    }
+
+    .centered-list {
+      text-align: center;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+ 
+.centered-list {
+  text-align: center;
+}
+
+{% block body %}
+
+<div id="content-wrapper" style="padding-top: 20px">
+  <div class="container-fluid">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                  <a href="">Detalle Curso</a>
+              </li>
+              
+          </ol>
+          <a  class="nav-link" href="{% url 'lista_cursos' %}" style="padding: 8px; float: right; color: blue;" >Volver</a>
+          <br>
+  </div>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12 mb-3">
+ 
+<h1>{{ course.name}}</h1>
+<p class="justified-text">{{ course.descripcion }}</p>
+<div  id="content-wrapper" style="padding-top: 10px">
+  
+
+<div id="content-wrapper" style="padding-top: 10px" class="d-flex justify-content-center">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="btn btn-sm btn-primary" href="{% url 'create_module_instructor' course.codigo %}" style="padding: 8px; float: right; color: white;">Crear Módulo</a>
+    <!-- Lista de módulos -->
+    <!-- Barra de navegación horizontal de módulos -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <ul class="nav nav-pills nav-fill gap-2 p-1 small rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+        {% for module in modules %}
+          <li class="nav-item" role="presentation">
+            <a class="btn btn-sm btn-success" href="{% url 'module_detail_instructor' module.id %}" style="padding: 8px; float: right; color: white;">{{ module.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  
+</div>
+</div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,31 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mb-8">
+            <div id="content-wrapper" style="padding-top: 10px">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table text-primary"></i>
+                        Editar lección
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            
+
+                            <div class="mt-3">
+                                <a href="{% url 'module_detail_instructor' module_id=lesson.module.id %}" class="btn btn-secondary">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

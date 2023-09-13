@@ -1,0 +1,119 @@
+{% extends 'dashboard/learner/base.html' %}
+{% load static %}
+{% block body %}
+<div id="content-wrapper" style="padding-top: 20px">
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <div class="ml-auto">
+          <a href="">Detalle Actividad</a>
+          </div>
+        </li>
+      </ol>
+    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <div id="content-wrapper">
+          <div class="container-fluid">
+            <div class="card mb-3">
+              <div class="card-header">
+              
+    <p>Módulo: {{ module.title }}</p>
+    
+    <p>Título de la Actividad: {{ activity.title }}</p>
+    <p>Descripción: {{ activity.description }}</p>
+    {% if activity.content %}
+                  
+
+    <!-- Verifica el tipo de contenido y muestra el contenido según sea necesario -->
+    {% if activity.content_type == 'pdf' %}
+      <img src="{% static 'img/pdf_icon.png' %}"  width="32" height="32">
+      <!-- Si es un PDF, muestra un enlace para descargarlo -->
+      <a href="{{ activity.content.url }}" target="_blank">{{ activity.get_content_filename }}</a>
+      <a href="{{ activity.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+
+    {% elif activity.content_type == 'video' %}
+      <img src="{% static 'img/video_icon.png' %}"  width="32" height="32">
+      <!-- Si es un video, muestra el reproductor de video -->
+      <video width="320" height="240" controls>
+          <source src="{{ activity.content.url }}" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+      </video>
+      <a href="{{ activity.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+    
+      {% elif activity.content_type == 'doc' %}
+      <img src="{% static 'img/doc_icon.png' %}"  width="32" height="32">
+      <!-- Si es un documento, muestra un enlace para descargarlo -->
+      <a href="{{ activity.content.url }}" target="_blank">{{ activity.get_content_filename }}</a>
+      <a href="{{ activity.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+    
+      {% elif activity.content_type == 'xls' %}
+      <img src="{% static 'img/xls_icon.png' %}"  width="32" height="32">
+      <!-- Si es un archivo de Excel, muestra un enlace para descargarlo -->
+      <a href="{{ activity.content.url }}" target="_blank">{{ activity.get_content_filename }}</a>
+      <a href="{{ activity.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+    
+      {% elif activity.content_type == 'ppt' %}
+      <img src="{% static 'img/ppt_icon.png' %}"  width="32" height="32">
+      <!-- Si es un archivo de PowerPoint, muestra un enlace para descargarlo -->
+      <a href="{{ activity.content.url }}" target="_blank">{{ activity.get_content_filename }}</a>
+      <a href="{{ activity.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+    
+      {% elif activity.content_type == 'link' %}
+      <img src="{% static 'img/link_icon.png' %}"  width="32" height="32">
+      <!-- Si es un enlace, muestra el enlace -->
+      <a href="{{ activity.content }}" target="_blank">{{ activity.get_content_filename }}</a>
+      <a href="{{ activity.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+    
+      {% endif %}
+    
+
+
+
+{% endif %}
+    
+ 
+  
+  <a href="{% url 'module_detail_learner' module_id=activity.module.id %}" style="padding: 8px; float: right; ;"> Volver</a>
+  
+  <br>
+
+<div class="container">
+  
+<ul>
+    <div class="tarjetas">
+      {% for vr_card in activity.vr_cards.all %}
+      
+    
+      <li>
+        <div class="tarjeta" >
+          {{ vr_card.title }}<br>
+            <img src="{% static "img/17.jpeg" %}"   width="200" height="150"> <br>
+          <a href="{{ vr_card.link }}" target="_blank">Acceder Aquí</a>
+      </div>
+      </li>
+      {% endfor %}
+  </div>
+</ul>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    <button type="submit">Cargar Respuesta</button>
+</form>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+  
+
+{% endblock %}

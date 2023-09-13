@@ -1,0 +1,18 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card mt-5">
+          <div class="card-header">
+<h2>Editar Recurso</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ resource_form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  </form>
+  <a href="{% url  'module_detail_instructor' module_id=module.id  %}" class="btn btn-secondary">Cancelar</a>
+
+
+{% endblock %}

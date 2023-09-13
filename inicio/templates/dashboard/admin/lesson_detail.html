@@ -1,0 +1,27 @@
+{% extends 'dashboard/admin/base.html' %}
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mb-8">
+            <div id="content-wrapper" style="padding-top: 10px">
+                <h1>{{ lesson.title }}</h1>
+                <p>{{ lesson.content }}</p>
+                
+                <!-- Agrega más detalles de la lección según tu modelo -->
+                
+                <div class="mt-3">
+                    <a href="{% url 'module_detail' module_id=lesson.module.id %}" class="btn btn-secondary">Volver al módulo</a>
+                    <a href="{% url 'edit_lesson' lesson_id=lesson.id %}" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Editar lección
+                    </a>
+                    <a href="{% url 'delete_lesson' lesson_id=lesson.id %}" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Eliminar lección
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

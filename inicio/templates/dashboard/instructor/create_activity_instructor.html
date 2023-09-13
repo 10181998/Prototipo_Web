@@ -1,0 +1,89 @@
+{% extends 'dashboard/instructor/base.html' %}
+
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Asegúrate de que la ruta sea correcta -->
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mb-8">
+      <div id="content-wrapper" style="padding-top: 10px">
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table text-primary"></i>
+            Crear una nueva Actividad
+          </div>
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data" action="{% url 'create_activity_instructor' module_id=module.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="module" value="{{ module.id }}">
+
+              
+                <label for="id_activity_type">Tipo de Actividad:</label>
+                <select id="id_activity_type" name="activity_type">
+                  <option value="clase">Actividad de Clase</option>
+                  <option value="realidad_virtual">Actividad de Realidad Virtual</option>
+                </select>
+
+                {{ activity_form.title.label_tag }} {{ activity_form.title }}
+                {{ activity_form.description.label_tag }} {{ activity_form.description }}
+
+                <div id="clase-fields" style="display: none;">
+                  {{ class_form.content_type.label_tag }} {{ class_form.content_type }}
+                  {{ class_form.content.label_tag }} {{ class_form.content }}
+                </div>
+
+                <div id="realidad_virtual-fields" style="display: none;">
+                  {{ vr_form.vr_cards.label_tag }} 
+                  {{ vr_form.vr_cards }}
+                </div>
+
+                <button type="submit">Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const activityTypeSelect = document.getElementById('id_activity_type');
+    const claseFields = document.getElementById('clase-fields');
+    const vrFields = document.getElementById('realidad_virtual-fields');
+    const vrCardCheckboxes = document.querySelectorAll(".vr-card-checkbox");
+
+    claseFields.style.display = 'none';
+    vrFields.style.display = 'none';
+
+    activityTypeSelect.addEventListener('change', function() {
+      if (activityTypeSelect.value === 'clase') {
+        claseFields.style.display = 'block';
+        vrFields.style.display = 'none';
+      } else if (activityTypeSelect.value === 'realidad_virtual') {
+        claseFields.style.display = 'none';
+        vrFields.style.display = 'block';
+      } else {
+        claseFields.style.display = 'none';
+        vrFields.style.display = 'none';
+      }
+    });
+
+    // Escucha los cambios en las casillas de verificación de vr_cards
+    vrCardCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", function() {
+        // Puedes realizar acciones específicas aquí cuando una vr_card se selecciona o deselecciona.
+        // Por ejemplo, puedes mantener un registro de las vr_cards seleccionadas para enviarlas al servidor cuando se envía el formulario.
+        // También puedes mostrar u ocultar elementos relacionados con las vr_cards seleccionadas.
+      });
+    });
+  });
+</script>
+
+
+
+
+
+{% endblock body %}

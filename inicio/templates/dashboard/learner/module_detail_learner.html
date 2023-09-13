@@ -1,0 +1,216 @@
+{% extends 'dashboard/learner/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% block body %}
+
+<div id="content-wrapper" style="padding-top: 20px">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <div class="ml-auto">
+        <a href="">Detalle Módulo</a>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-3">
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <div class="card mb-3">
+            <div class="card-header">
+              
+              <h3>{{ module.title }}</h3>
+              <p class="justified-text">{{ module.description }}</p>
+
+              <!-- Lecciones -->
+
+              <div class="card-header">
+              
+              <h3>Lecciones</h3>
+                <!-- Lista de lecciones -->
+                <ul>
+                  {% for lesson in lessons %}
+                      <li>
+                        
+
+                        <a href="">
+                              {{ lesson.title }}</a><br>
+                              <p>{{ lesson.description }}</p>
+                              
+                              {% if lesson.content %}
+                                
+
+                                    <!-- Verifica el tipo de contenido y muestra el contenido según sea necesario -->
+                                    {% if lesson.content_type == 'pdf' %}
+                                      <img src="{% static 'img/pdf_icon.png' %}"  width="32" height="32">
+                                      <!-- Si es un PDF, muestra un enlace para descargarlo -->
+                                      <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                                      <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+
+                                    {% elif lesson.content_type == 'video' %}
+                                      <img src="{% static 'img/video_icon.png' %}"  width="32" height="32">
+                                      <!-- Si es un video, muestra el reproductor de video -->
+                                      <video width="320" height="240" controls>
+                                          <source src="{{ lesson.content.url }}" type="video/mp4">
+                                          Tu navegador no soporta el elemento de video.
+                                      </video>
+                                      <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                                    
+                                      {% elif lesson.content_type == 'doc' %}
+                                      <img src="{% static 'img/doc_icon.png' %}"  width="32" height="32">
+                                      <!-- Si es un documento, muestra un enlace para descargarlo -->
+                                      <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                                      <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                                    
+                                      {% elif lesson.content_type == 'xls' %}
+                                      <img src="{% static 'img/xls_icon.png' %}"  width="32" height="32">
+                                      <!-- Si es un archivo de Excel, muestra un enlace para descargarlo -->
+                                      <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                                      <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                                    
+                                      {% elif lesson.content_type == 'ppt' %}
+                                      <img src="{% static 'img/ppt_icon.png' %}"  width="32" height="32">
+                                      <!-- Si es un archivo de PowerPoint, muestra un enlace para descargarlo -->
+                                      <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                                      <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                                    
+                                      {% elif lesson.content_type == 'link' %}
+                                      <img src="{% static 'img/link_icon.png' %}"  width="32" height="32">
+                                      <!-- Si es un enlace, muestra el enlace -->
+                                      <a href="{{ lesson.content }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                                      <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                                    
+                                      {% endif %}
+                                    
+
+
+
+                              {% endif %}
+                          
+                      </li>
+                      {% empty %}
+                          <li>No hay Lecciones disponibles para este módulo.</li>
+                  {% endfor %}
+                  
+              </ul>
+          
+          </div><br>
+            <!-- Actividades -->
+
+              <div class="card-header">
+                  
+              <h3>Actividades</h3>
+              
+              
+              <ul>
+                {% for activity in activities %}
+                  <li>
+                    
+
+                    <a href="{% url 'detail_activity_learner' module_id=module.id activity_id=activity.id %}">{{ activity.title }}</a>
+                    <p>{{ activity.description }}</p>
+  
+                    {% if activity.activity_type == 'clase' %}
+
+                      
+
+
+
+
+
+                    {% elif activity.activity_type == 'realidad_virtual' %}
+                      <h5>Tarjetas de Realidad Virtual:</h5>
+                      <ul>
+                        {% for vr_card in activity.vr_cards.all %}
+                          <li>{{ vr_card.title }}</li>
+                          <li>{{ vr_card.link }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                  {% empty %}
+                          <li>No hay Actividades disponibles para este módulo.</li>
+                {% endfor %}
+              </ul>
+              
+
+              
+
+              </div>
+              
+             
+            <br>
+            <div class="card-header">
+              <!-- Recursos -->
+              <a class="nav-link" href="{% url 'create_resource_instructor' module_id=module.id %}" style="padding: 8px; float: right;color: green;"><i class="fas fa-plus"></i></a>
+              <h3>Recursos Adicionales</h3>
+              
+              <ul>
+                {% for resource in resources %}
+                  <li>{{ resource.title }}</li>
+
+                  {% if resource.content %}
+                                
+
+                  <!-- Verifica el tipo de contenido y muestra el contenido según sea necesario -->
+                  {% if lesson.content_type == 'pdf' %}
+                    <img src="{% static 'img/pdf_icon.png' %}"  width="32" height="32">
+                    <!-- Si es un PDF, muestra un enlace para descargarlo -->
+                    <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                    <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+
+                  {% elif lesson.content_type == 'video' %}
+                    <img src="{% static 'img/video_icon.png' %}"  width="32" height="32">
+                    <!-- Si es un video, muestra el reproductor de video -->
+                    <video width="320" height="240" controls>
+                        <source src="{{ lesson.content.url }}" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                  
+                    {% elif lesson.content_type == 'doc' %}
+                    <img src="{% static 'img/doc_icon.png' %}"  width="32" height="32">
+                    <!-- Si es un documento, muestra un enlace para descargarlo -->
+                    <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                    <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                  
+                    {% elif lesson.content_type == 'xls' %}
+                    <img src="{% static 'img/xls_icon.png' %}"  width="32" height="32">
+                    <!-- Si es un archivo de Excel, muestra un enlace para descargarlo -->
+                    <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                    <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                  
+                    {% elif lesson.content_type == 'ppt' %}
+                    <img src="{% static 'img/ppt_icon.png' %}"  width="32" height="32">
+                    <!-- Si es un archivo de PowerPoint, muestra un enlace para descargarlo -->
+                    <a href="{{ lesson.content.url }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                    <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                  
+                    {% elif lesson.content_type == 'link' %}
+                    <img src="{% static 'img/link_icon.png' %}"  width="32" height="32">
+                    <!-- Si es un enlace, muestra el enlace -->
+                    <a href="{{ lesson.content }}" target="_blank">{{ lesson.get_content_filename }}</a>
+                    <a href="{{ lesson.content.url }}" download><i class="bi bi-download"></i>Descargar </a>
+                  
+                    {% endif %}
+                  
+
+            {% endif %}
+
+                {% empty %}
+                  <li>No hay recursos disponibles para este módulo.</li>
+                {% endfor %}
+              </ul>
+
+
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+{% endblock %}

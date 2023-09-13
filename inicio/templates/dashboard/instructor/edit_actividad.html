@@ -1,0 +1,13 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% load static %}
+{% block body %}
+
+<h1>Editar Actividad</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+  </form>
+  <a href="{% url 'module_detail_instructor' module_id=module.id %}">Volver al Detalle del Módulo</a>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mb-3">
+    <div class="col-12 mb-3">
+    
+
+          <div id="content-wrapper" style="padding-top: 30px">
+  <div class="container-fluid">
+      <ol class="breadcrumb">
+
+          <li class="breadcrumb-item">
+              <a href="">Editar tema </a>
+          </li>
+          
+      </ol>
+
+
+<h1>Editar Tema: {{ tema.nombre }}</h1>
+<form method="POST" action="{% url 'editar_tema' tema.id %}">
+  {% csrf_token %}
+  <label for="nombre">Nombre:</label>
+  <input type="text" name="nombre" value="{{ tema.nombre }}" required>
+  <label for="descripcion">Descripción:</label>
+  <textarea name="descripcion" required>{{ tema.descripcion }}</textarea>
+  <label for="identificador">Identificador:</label>
+  <input type="text" name="identificador" value="{{ tema.identificador }}" required>
+  <button type="submit">Guardar Cambios</button>
+</form>
+{% endblock body %}

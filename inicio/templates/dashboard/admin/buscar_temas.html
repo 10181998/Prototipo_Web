@@ -1,0 +1,36 @@
+{% extends 'dashboard/admin/base.html' %}
+
+{% block body %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mb-3">
+    <div class="col-12 mb-3">
+    
+
+          <div id="content-wrapper" style="padding-top: 30px">
+  <div class="container-fluid">
+      <ol class="breadcrumb">
+
+          <li class="breadcrumb-item">
+              <a href="">Buscar tema </a>
+          </li>
+          
+      </ol>
+
+
+<h1>Buscar temas</h1>
+<form method="GET" action="{% url 'buscar_temas' %}">
+  <input type="text" name="query" placeholder="Buscar temas">
+  <button type="submit">Buscar</button>
+</form>
+
+<ul>
+  {% for tema in temas %}
+    <li>{{ tema.nombre }}</li>
+  {% empty %}
+    <li>No se encontraron temas</li>
+  {% endfor %}
+</ul>
+
+{% endblock body %}

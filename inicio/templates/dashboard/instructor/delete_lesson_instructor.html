@@ -1,0 +1,27 @@
+{% extends 'dashboard/instructor/base.html' %}
+{% block body %}
+<div id="content-wrapper" style="padding-top: 20px">
+    <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="">Detalle Módulo</a>
+                </li>
+               
+            </ol>
+          
+    </div>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card mt-5">
+            <div class="card-header">
+    <h2>Eliminar Lección</h2>
+    <p>¿Estás seguro de que deseas eliminar la lección "{{ lesson.title }}"?</p>
+    
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Eliminar</button>
+      <a href="{% url 'module_detail_instructor' module_id=module_id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+  {% endblock body %}
