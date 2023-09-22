@@ -21,7 +21,7 @@
 <p>¿Está seguro de que desea eliminar este módulo?</p>
 <form method="post">
   {% csrf_token %}
-  <button type="submit" class=" btn-danger">Eliminar</button>
+  <button type="submit" class="btn btn-danger">Eliminar</button>
   <a href="{% url 'module_detail_instructor' module_id=module.id %}"class="btn btn-secondary">Cancelar</a>
 </form>
 

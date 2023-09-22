@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 12:35-0500\n"
+"POT-Creation-Date: 2023-09-19 00:07-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,97 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\inicio\forms.py:18 .\inicio\forms.py:160 .\inicio\forms.py:195
+#: .\inicio\forms.py:215
+msgid "Contenido"
+msgstr ""
+
+#: .\inicio\forms.py:23
+msgid "Confirmar Email"
+msgstr ""
+
+#: .\inicio\forms.py:34 .\inicio\forms.py:55
+msgid "Nombre de usuario"
+msgstr ""
+
+#: .\inicio\forms.py:35 .\inicio\forms.py:56
+#: .\inicio\templates\dashboard\admin\course.html:62
+msgid "Nombre"
+msgstr ""
+
+#: .\inicio\forms.py:36 .\inicio\forms.py:57
+msgid "Apellido"
+msgstr ""
+
+#: .\inicio\forms.py:37 .\inicio\forms.py:58
+msgid "Email"
+msgstr ""
+
+#: .\inicio\forms.py:47
+msgid "¡Los correos electrónicos deben coincidir!"
+msgstr ""
+
+#: .\inicio\forms.py:148 .\inicio\forms.py:157 .\inicio\forms.py:184
+#: .\inicio\forms.py:193 .\inicio\forms.py:205 .\inicio\forms.py:235
+msgid "Título"
+msgstr ""
+
+#: .\inicio\forms.py:149 .\inicio\forms.py:158 .\inicio\forms.py:185
+#: .\inicio\forms.py:206 .\inicio\templates\dashboard\admin\course.html:63
+msgid "Descripción"
+msgstr ""
+
+#: .\inicio\forms.py:159 .\inicio\forms.py:175 .\inicio\forms.py:194
+#: .\inicio\forms.py:214
+msgid "Tipo de Contenido"
+msgstr ""
+
+#: .\inicio\forms.py:176
+msgid "Archivo"
+msgstr ""
+
+#: .\inicio\forms.py:203
+msgid "Módulo"
+msgstr ""
+
+#: .\inicio\forms.py:204
+msgid "Tipo de Actividad"
+msgstr ""
+
+#: .\inicio\forms.py:223
+msgid "Tarjetas VR"
+msgstr ""
+
+#: .\inicio\forms.py:236
+msgid "Enlace"
+msgstr ""
+
+#: .\inicio\forms.py:244
+msgid "Cargar archivo de respuesta"
+msgstr ""
+
+#: .\inicio\forms.py:247
+msgid "Seleccione un archivo para cargar como respuesta a la actividad."
+msgstr ""
+
+#: .\inicio\templates\dashboard\admin\course.html:61
+msgid "Código"
+msgstr ""
+
+#: .\inicio\templates\dashboard\admin\course.html:64
+msgid "Opciones"
+msgstr ""
+
+#: .\inicio\templates\dashboard\admin\course.html:89
+#: .\inicio\templates\dashboard\admin\course.html:91
+msgid "Anterior"
+msgstr ""
+
+#: .\inicio\templates\dashboard\admin\course.html:101
+#: .\inicio\templates\dashboard\admin\course.html:103
+msgid "Siguiente"
+msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
 msgid "Messages"
@@ -1209,3 +1300,18 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Search"
+#~ msgstr "Buscar"
+
+#~ msgid "Show entries"
+#~ msgstr "Mostrar entradas"
+
+#~ msgid "Showing %(start)s to %(end)s of %(total)s entries"
+#~ msgstr "Mostrando %(start)s a %(end)s de %(total)s entradas"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "Next"
+#~ msgstr "Siguiente"

@@ -36,7 +36,7 @@ import operator
 import itertools
 from django.db.models import Avg, Count, Sum
 from django.forms import inlineformset_factory
-from .models import TakenQuiz, Profile, Quiz, Question, Answer, Learner, User, Course, Tutorial, Notes, Announcement
+from .models import TakenQuiz, Profile, Quiz, Question, Answer, Learner, User, Course,  Notes, Announcement
 from django.db import transaction
 from django.contrib.auth.hashers import make_password
 from django.core.files.storage import FileSystemStorage
@@ -593,7 +593,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Module, Activity, VRCard, Tarjeta,ActivityVRCard
+from .models import Module, Activity, VRCard,ActivityVRCard
 from .forms import ActivityForm, ClassActivityForm, VRActivityForm,VRCardForm
 
 def create_activity_instructor(request, module_id):
@@ -728,14 +728,7 @@ def detalle_tarjeta(request, vr_card_id):
     vr_card = get_object_or_404(VRCard, id=vr_card_id)
     return render(request, 'dashboard/instructor/detalle_tarjeta.html', {'vr_card': vr_card})
 
-def mostrar_tarjeta(request,module_id, tarjeta_seleccionada):
-    module = get_object_or_404(Module, id=module_id)
-    # Puedes hacer cualquier procesamiento adicional aquí si es necesario
-    try:
-        tarjeta = Tarjeta.objects.get(nombre=tarjeta_seleccionada)
-    except Tarjeta.DoesNotExist:
-        tarjeta = None
-    return render(request, 'dashboard/instructor/detail_activity.html', {'module': module, 'activity': None,  'tarjeta': tarjeta})
+
 
 
 
@@ -1065,35 +1058,7 @@ def tutorial(request):
     return render(request, 'dashboard/instructor/tutorial.html', context)
 
 
-def publish_tutorial(request):
-    if request.method == 'POST':
-        title = request.POST['title']
-        codigo = request.POST['txtcodigo']
-        content = request.POST['content']
-        thumb = request.FILES['thumb']
-        current_user = request.user
-        author_id = current_user.id
-        print(author_id)
-        print(codigo)
-        a = Tutorial(title=title, content=content, thumb=thumb,
-                    user_id=author_id, codigo=codigo)
-        a.save()
-        messages.success(request, 'Tutorial was published successfully!')
-        return redirect('tutorial')
-    else:
-        messages.error(request, 'Tutorial was not published successfully!')
-        return redirect('tutorial')
 
-
-def itutorial(request):
-    tutorials = Tutorial.objects.all().order_by('-created_at')
-    tutorials = {'tutorials': tutorials}
-    return render(request, 'dashboard/instructor/list_tutorial.html', tutorials)
-
-
-class ITutorialDetail(LoginRequiredMixin, DetailView):
-    model = Tutorial
-    template_name = 'dashboard/instructor/tutorial_detail.html'
 
 
 class LNotesList(ListView):
@@ -1242,10 +1207,6 @@ class LearnerSignUpView(CreateView):
         return redirect('learner')
 
 
-def ltutorial(request):
-    tutorials = Tutorial.objects.all().order_by('-created_at')
-    tutorials = {'tutorials': tutorials}
-    return render(request, 'dashboard/learner/list_tutorial.html', tutorials)
 
 
 class LLNotesList(ListView):
@@ -1302,9 +1263,7 @@ def lcreate_profile(request):
         return render(request, 'dashboard/learner/create_profile.html', users)
 
 
-class LTutorialDetail(LoginRequiredMixin, DetailView):
-    model = Tutorial
-    template_name = 'dashboard/learner/tutorial_detail.html'
+
 
 """
 class LearnerInterestsView(UpdateView):

@@ -18,7 +18,7 @@
           <div class="container-fluid">
             <div class="card mb-3">
               <div class="card-header">
-              
+                <a href="{% url 'module_detail_instructor' module_id=activity.module.id %}" style="padding: 8px; float: right; ;"> Volver</a>         
     <p>Módulo: {{ module.title }}</p>
     <a href="{% url 'Act_Realidad_Virtual' module_id=module.id activity_id=activity.id %}" style="padding: 8px; float: right; color: green;"><i class="fas fa-plus"></i>RV</a>
     <p>Título de la Actividad: {{ activity.title }}</p>
@@ -75,7 +75,7 @@
     
  
   
-  <a href="{% url 'module_detail_instructor' module_id=activity.module.id %}" style="padding: 8px; float: right; ;"> Volver</a>
+  
   
   <br>
 
@@ -84,20 +84,22 @@
 <ul>
     <div class="tarjetas">
       {% for vr_card in activity.vr_cards.all %}
-      <a href="{% url 'eliminar_seleccion' module_id=module.id activity_id=activity.id vr_card_id=vr_card.id %}">
-        <i class="fas fa-trash"></i> Eliminar
-    </a>
+      
     
       <li>
+        <a href="{% url 'eliminar_seleccion' module_id=module.id activity_id=activity.id vr_card_id=vr_card.id %}"style="padding: 8px; float: right;color: red;">
+          <i class="fas fa-trash"></i></a>
         <div class="tarjeta" >
           {{ vr_card.title }}<br>
             <img src="{% static "img/17.jpeg" %}"   width="200" height="150"> <br>
           <a href="{{ vr_card.link }}" target="_blank">Acceder Aquí</a>
+         
       </div>
       </li>
       {% endfor %}
   </div>
 </ul>
+
 </div>
 </div>
 </div>

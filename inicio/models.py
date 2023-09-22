@@ -104,12 +104,7 @@ class Lesson(models.Model):
     def __str__(self):
         return self.title
     
-class Tarjeta(models.Model):
-    titulo = models.CharField(max_length=255)
-    enlace = models.URLField()
 
-    def __str__(self):
-        return self.titulo
     
 class VRCard(models.Model):
     title = models.CharField(max_length=255)
@@ -186,14 +181,6 @@ class ResourceContent(models.Model):
         return self.title
     
     
-class Tutorial(models.Model):
-    title = models.CharField(max_length=50)
-    content = models.TextField()
-    thumb = models.ImageField(upload_to='', null=True, blank=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, default='')
-    created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-#    video = EmbedVideoField(blank=True, null=True)
 
 
 class Notes(models.Model):

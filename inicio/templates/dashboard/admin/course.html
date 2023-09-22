@@ -1,8 +1,14 @@
 {% extends 'dashboard/admin/base.html' %}
 
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% load i18n %}
 
+
+
+
+
+
+{% block body %}
 <style>
   /* Estilo para el botón de eliminación */
   .btnEliminacion {
@@ -12,12 +18,6 @@
       padding: 0; /* Eliminar relleno interno */
   }
 </style>
-
-
-
-
-{% block body %}
-
 <div id="content-wrapper" style="padding-top: 20px">
     <div class="container-fluid">
             <ol class="breadcrumb">
@@ -42,87 +42,68 @@
  
 <!-- Listado de Cursos -->
 
-    <div class="row">
-      <div class="col-12 mb-3">
-            <div id="content-wrapper">
-    <div class="container-fluid">
+ 
         
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-table"></i>
                 Lista de Cursos 
-                <a  class="btn btn-sm btn-success" href="{% url 'crear_course' %}" style="padding: 8px; float: right; background-color: #999965; color: white;">Crear Curso </a>
+                <a  class="btn btn-sm btn-success" href="{% url 'crear_course' %}" style="padding: 8px; float: right; background-color: blue; color: white;">Crear Curso </a>
             </div>
             <div class="card-body">
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+                
                 <div class="table-responsive">
                   
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
                         <th>No</th>
-                        <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Opciones</th>
+                        <th>{% trans "Código" %}</th>
+                        <th>{% trans "Nombre" %}</th>
+                        <th>{% trans "Descripción" %}</th>
+                        <th>{% trans "Opciones" %}</th>
                     </tr>
                     </thead>
                     <tbody>
-                      {% if course_list %}
-                          {% for c in course_list %}
-                              <tr>
-                                  <td>{{ forloop.counter }}</td>
-                                  <td>{{ c.codigo }}</td>
-                                  <td>{{ c.name }}</td>
-                                  <td>{{ c.descripcion }}</td>
-                                  <td>
-                                    
-                                      <!--<a class="nav-link" href="editarCurso/{{c.codigo}}"><i class="fas fa-edit"></i></a>
-                                      <a class="nav-link" href="detalle_curso/{{c.codigo}}" style=" float: right;color:green;"><i class="fas fa-info-circle"></a>
-                                      <a class="nav-link" href="eliminarCurso/{{c.codigo}}"style=" float: right;color:red;"><i class="fas fa-trash"></i></a>
-                                      -->
-                                      <a class="nav-link" href="editarCurso/{{c.codigo}}" style="padding: 8px; float: right;"><i class="fas fa-edit"></i></a>
-                                    
-                                      <a class="nav-link"  href="detalle_curso/{{c.codigo}}" style="padding: 8px; float: right;color:green;"><i class="fas fa-info-circle"></i></a>
-                                      <a href="eliminarCurso/{{c.codigo}}">
+                        {% for c in course_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ c.codigo }}</td>
+                                <td>{{ c.name }}</td>
+                                <td>{{ c.descripcion }}</td>
+                                <td>
+                                    <a class="nav-link" href="editarCurso/{{c.codigo}}" style="padding: 8px; float: right;"><i class="fas fa-edit"></i></a>
+                                    <a class="nav-link"  href="detalle_curso/{{c.codigo}}" style="padding: 8px; float: right;color:green;"><i class="fas fa-info-circle"></i></a>
+                                    <a href="eliminarCurso/{{c.codigo}}">
                                         <button type="button" class="btn btn-danger btnEliminacion"><i class="fas fa-trash"></i></button>
-                                      </a>
-                                      
-                                  </td>
-                              </tr>
-                              
-                          {% endfor %}
-                      {% endif %}
-                  </tbody>
-                  
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
                 
-                      {% if is_paginated %}
-<ul class="pagination">
-{% if page_obj.has_previous %}
-  <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-{% else %}
-  <li class="disabled"><span>&laquo;</span></li>
-{% endif %}
-{% for i in paginator.page_range %}
-  {% if page_obj.number == i %}
-    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-  {% else %}
-    <li><a href="?page={{ i }}">{{ i }}</a></li>
-  {% endif %}
-{% endfor %}
-{% if page_obj.has_next %}
-  <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-{% else %}
-  <li class="disabled"><span>&raquo;</span></li>
-{% endif %}
-</ul>
-{% endif %}
-        
+                {% if is_paginated %}
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                  <li><a href="?page={{ page_obj.previous_page_number }}">&laquo; {% trans "Anterior" %}</a></li>
+                {% else %}
+                  <li class="disabled"><span>&laquo; {% trans "Anterior" %}</span></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                  {% if page_obj.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                  <li><a href="?page={{ page_obj.next_page_number }}">{% trans "Siguiente" %} &raquo;</a></li>
+                {% else %}
+                  <li class="disabled"><span>{% trans "Siguiente" %} &raquo;</span></li>
+                {% endif %}
+                </ul>
+                {% endif %}
 
 
 
@@ -155,9 +136,8 @@
         </div>
       </div>
     </div>
-
+    
   
-
 {% endblock body %}
 
 
@@ -165,6 +145,11 @@
 
 
 {% block extrascripts %}
+
+
+
+
+
   <script type="text/javascript">
       $(function () {
           // Log in & Sign up buttons

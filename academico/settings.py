@@ -61,6 +61,10 @@ MIDDLEWARE = [
     
 ]
 
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),  # Asegúrate de que esta sea la ubicación correcta de tus archivos de traducción
+]
 ROOT_URLCONF = 'academico.urls'
 
 TEMPLATES = [
@@ -123,11 +127,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-ES'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
-DATETIME_FORMAT = 'Y-m-d'
+DATETIME_FORMAT = 'd-m-Y'
 
 USE_I18N = True
 
@@ -162,6 +166,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 #CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),  # Ruta a la carpeta 'locale' en la raíz de tu proyecto
-]

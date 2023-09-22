@@ -3,10 +3,13 @@
 
 
 {% block body %}
-
-<div class="container">
+<div id="content-wrapper" style="padding-top: 20px">
+  <div class="container-fluid">
+         
+  
+        </div>
     <div class="row">
-      <div class="col-md-8 offset-md-2">
+      <div class="col-md-6 offset-md-2">
         <div class="card mt-5">
           <div class="card-header">
             <h3>Crear Lección</h3>
@@ -16,7 +19,7 @@
               {% csrf_token %}
               {{ form.as_p }}
               <button type="submit" class="btn btn-primary">Crear Lección</button>
-              <a href="{% url 'module_detail_instructor' module_id=module.id %}"style="margin-left: 20px;" >Cancelar</a>
+              <a href="{% url 'module_detail_instructor' module_id=module.id %}"class="btn btn-secondary" >Cancelar</a>
             </form>
           </div>
         </div>

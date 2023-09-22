@@ -67,31 +67,16 @@ path('module_instructor/<int:module_id>/lesson_instructor/<int:lesson_id>/', vie
 path('module_instructor/<int:module_id>/lesson_instructor/<int:lesson_id>/eliminar/', views.delete_lesson_instructor, name='delete_lesson_instructor'),
 path('module_instructor/<int:module_id>/lesson_instructor/<int:lesson_id>/editar/', views.edit_lesson_instructor, name='edit_lesson_instructor'),
 
-#path('module_instructor/<int:module_id>/create_activity_instructor/', views.create_activity_instructor, name='create_activity_instructor'),
-#path('module_instructor/<int:module_id>/contenido/detail_activity/<int:activity_id>/', views.detail_activity, name='detail_activity'),
-#path('module_instructor/<int:module_id>/lista_actividades/', views.lista_actividades, name='lista_actividades'),
-#path('module_instructor/<int:module_id>/activity/<int:activity_id>/edit_activity', views.edit_activity, name='edit_activity'),
-#path('module_instructor/<int:module_id>/activity/<int:activity_id>/delete_activity/', views.delete_activity, name='delete_activity'),
-#path('module_instructor/<int:module_id>/detail_activity/<int:activity_id>/Act_Realidad_Virtual/<int:act_id>/', views.Act_Realidad_Virtual, name='Act_Realidad_Virtual'),
-#path('module_instructor/<int:module_id>/contenido/mostrar_tarjeta/<str:tarjeta>/', views.mostrar_tarjeta, name='mostrar_tarjeta'),
-
 
 path('module_instructor/<int:module_id>/create_activity_instructor/', views.create_activity_instructor, name='create_activity_instructor'),
-
-# URL para editar una actividad específica en un módulo específico
 path('module_instructor/<int:module_id>/activity/<int:activity_id>/edit_activity/', views.edit_activity, name='edit_activity'),
-
-# URL para eliminar una actividad específica en un módulo específico
 path('module_instructor/<int:module_id>/activity/<int:activity_id>/delete_activity/', views.delete_activity, name='delete_activity'),
-
-# URL para ver actividades de realidad virtual en un módulo específico
 path('module_instructor/<int:module_id>/activity/detail_activity/<int:activity_id>/', views.detail_activity, name='detail_activity'),
 path('module_instructor/<int:module_id>/activity/detail_activity/<int:activity_id>/Act_Realidad_Virtual/', views.Act_Realidad_Virtual, name='Act_Realidad_Virtual'),
 path('module_instructor/<int:module_id>/activity/detail_activity/<int:activity_id>/select_vr_card/<int:vr_card_id>/', views.select_vr_card, name='select_vr_card'),
 path('detalle_tarjeta/<int:vr_card_id>/', views.detalle_tarjeta, name='detalle_tarjeta'),
 path('module_instructor/<int:module_id>/activity/detail_activity/<int:activity_id>/eliminar_seleccion/<int:vr_card_id>/', views.eliminar_seleccion, name='eliminar_seleccion'),  
-# URL para mostrar una tarjeta específica en un módulo específico
-path('module_instructor/<int:module_id>/activity/mostrar_tarjeta/<str:tarjeta>/', views.mostrar_tarjeta, name='mostrar_tarjeta'),
+
 
 
 path('module_instructor/<int:module_id>/resources/create/', views.create_resource_instructor, name='create_resource_instructor'),
@@ -113,9 +98,7 @@ path('llchat/', views.TiseList.as_view(), name='llchat'),
 path('user_profile/', views.user_profile, name='user_profile'),
 path('create_profile/', views.create_profile, name='create_profile'),
 path('tutorial/', views.tutorial, name='tutorial'),
-path('post/',views.publish_tutorial,name='publish_tutorial'),
-path('itutorial/',views.itutorial,name='itutorial'),
-path('itutorials/<int:pk>/', views.ITutorialDetail.as_view(), name = "itutorial-detail"),
+
 path('listnotes/', views.LNotesList.as_view(), name='lnotes'),
 path('iadd_notes/', views.iadd_notes, name='iadd_notes'),
 path('publish_notes/', views.publish_notes, name='publish_notes'),
@@ -135,12 +118,12 @@ path('module_learner/<int:module_id>/lesson_learner/<int:lesson_id>/', views.les
 path('module_learner/<int:module_id>/activity/detail_activity_learner/<int:activity_id>/', views.detail_activity_learner, name='detail_activity_learner'),
 path('activity/<int:activity_id>/cargar_respuesta/', views.cargar_respuesta_actividad, name='cargar_respuesta_actividad'),
 
-path('ltutorial/',views.ltutorial,name='ltutorial'),
+
 path('llistnotes/', views.LLNotesList.as_view(), name='llnotes'),
 path('ilchat/', views.ITiseList.as_view(), name='ilchat'),
 path('luser_profile/', views.luser_profile, name='luser_profile'),
 path('lcreate_profile/', views.lcreate_profile, name='lcreate_profile'),
-path('tutorials/<int:pk>/', views.LTutorialDetail.as_view(), name = "tutorial-detail"),
+
 #path('interests/', views.LearnerInterestsView.as_view(), name='interests'),
 path('learner_quiz/', views.LQuizListView.as_view(), name='lquiz_list'),
 path('taken/', views.TakenQuizListView.as_view(), name='taken_quiz_list'),
